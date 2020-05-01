@@ -1,0 +1,8 @@
+/venv
+/.idea
+property/__pycache__
+property/migrations/__pycache__
+real_estate_agency/__pycache__
+db.sqlite3
+.env
+
