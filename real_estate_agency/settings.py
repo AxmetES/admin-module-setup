@@ -2,11 +2,11 @@ import dj_database_url
 import os
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -18,7 +18,6 @@ SECRET_KEY = os.getenv("SECRET_KEY", "REPLACE_ME")
 DEBUG = os.getenv("DEBUG", "true").lower() in ['yes', '1', 'true']
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -32,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     'property.apps.PropertyConfig',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +81,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
