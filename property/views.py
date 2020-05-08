@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from property.models import Flat
+from property.models import Owner
 
 
 def format_price(value):
