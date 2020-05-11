@@ -7,9 +7,8 @@ def fill_in_owners(apps, schema_editor):
     Owner = apps.get_model('property', 'Owner')
     Flat = apps.get_model('property', 'Flat')
     for flat in Flat.objects.all():
-        Owner.objects.get_or_create(full_name=flat.owner)
-        Owner.objects.get_or_create(owner_number=flat.owners_phonenumber)
-        Owner.objects.get_or_create(owner_phone_pure=flat.owner_phone_pure)
+        Owner.objects.get_or_create(full_name=flat.owner, owner_number=flat.owners_phonenumber,
+                                    owner_phone_pure=flat.owner_phone_pure)
 
 
 class Migration(migrations.Migration):

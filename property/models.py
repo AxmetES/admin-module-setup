@@ -25,15 +25,16 @@ class Flat(models.Model):
 
     new_building = models.NullBooleanField('Новостройка ?', db_index=True, blank=True)
 
-    liked_by = models.ManyToManyField(User, verbose_name='Лайки ', related_name='liked_flat', blank=True)
+    liked_by = models.ManyToManyField(User, verbose_name='Лайки ', related_name='liked_flats', blank=True)
 
     def __str__(self):
         return f"{self.town}, {self.address} ({self.price}р.)"
 
 
 class Complaint(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_DEFAULT, null=True, default=True)
-    flat = models.ForeignKey(Flat, on_delete=models.SET_DEFAULT, null=True, default=True)
+    user = models.ForeignKey(User, related_name='author_complaints', on_delete=models.SET_DEFAULT, null=True,
+                             default=True)
+    flat = models.ForeignKey(Flat, related_name='complaints', on_delete=models.SET_DEFAULT, null=True, default=True)
     text = models.TextField('Жалоба', help_text='Текст жалобы', blank=True)
 
     def __str__(self):
@@ -45,7 +46,8 @@ class Owner(models.Model):
     owner_number = models.CharField(verbose_name='Номер владельца:', blank=True, max_length=20, db_index=True)
     owner_phone_pure = models.CharField(verbose_name='Нормализованный номер владельца:', blank=True, max_length=20,
                                         db_index=True)
-    owned_flat = models.ManyToManyField('Flat', related_name='by_flats')
+    owned_flat = models.ManyToManyField('Flat', related_name='by_flats', verbose_name='Квартиры владельца', blank=True,
+                                        null=True)
 
     def __str__(self):
         return f'{self.full_name}, {self.owner_number}'
