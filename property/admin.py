@@ -7,6 +7,7 @@ from .models import Owner
 
 class OwnerFlatInline(admin.TabularInline):
     model = Owner.owned_flat.through
+    raw_id_fields = ('owner',)
 
 
 class FlatAdmin(admin.ModelAdmin):
@@ -15,7 +16,11 @@ class FlatAdmin(admin.ModelAdmin):
     list_display = ('address', 'price', 'new_building', 'construction_year', 'town',)
     list_editable = ('new_building',)
     list_filter = ('new_building', 'rooms_number', 'has_balcony')
-    raw_id_fields = ('liked_by', 'by_flats',)
+    raw_id_fields = ('liked_by',)
+    inlines = [
+        OwnerFlatInline,
+    ]
+    exclude = ('by_flats',)
 
 
 class ComplaintAdmin(admin.ModelAdmin):
@@ -26,8 +31,7 @@ class ComplaintAdmin(admin.ModelAdmin):
 
 
 class OwnerAdmin(admin.ModelAdmin):
-    list_display = ('full_name',)
-    raw_id_fields = ('owned_flat',)
+    list_display = ('full_name', 'owner_phone_pure')
 
 
 admin.site.register(Flat, FlatAdmin)
