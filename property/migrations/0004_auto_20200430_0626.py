@@ -6,8 +6,8 @@ from django.db import migrations
 def check_out_new_building(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     for flat in Flat.objects.all():
-        if not flat.construction_year < 2016:
-            flat.new_building = True
+        flat.new_building = flat.construction_year >= 2015
+        flat.save()
 
 
 class Migration(migrations.Migration):
