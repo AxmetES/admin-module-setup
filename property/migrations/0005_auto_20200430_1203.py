@@ -16,5 +16,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(check_new_building),
+        migrations.RunPython(check_out_new_building),
     ]

@@ -9,11 +9,12 @@ def check_out_new_building(apps, schema_editor):
         flat.new_building = flat.construction_year >= 2015
         flat.save()
 
+
 class Migration(migrations.Migration):
     dependencies = [
         ('property', '0005_auto_20200430_1203'),
     ]
 
     operations = [
-        migrations.RunPython(check_new_building),
+        migrations.RunPython(check_out_new_building),
     ]
