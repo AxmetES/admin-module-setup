@@ -1,4 +1,4 @@
-Django==2.2.4
+Django==2.2.20
 python-dotenv==0.10.3
 dj-database-url==0.5.0
 django-phonenumber-field==4.0.0
